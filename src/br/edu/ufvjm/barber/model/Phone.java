@@ -1,0 +1,29 @@
+package br.edu.ufvjm.barber.model;
+
+/**
+ * @param ddi    +55
+ * @param ddd    (38)
+ * @param number 9 9999-9999
+ */
+
+public record Phone(String ddi, String ddd, String number) {
+
+    public Phone {
+        if (ddi == null || ddi.isBlank() ||
+                ddd == null || ddd.isBlank() ||
+                number == null || number.isBlank()) {
+            throw new IllegalArgumentException("No field can be null.");
+        }
+    }
+
+    // TELEFONE PREENCHIDO
+    public String getFullNumber() {
+        return "+" + ddi() + "(" + ddd() + ") " + number();
+    }
+
+    // SAÍDO DO CAMPO TELEFONE PREENCHIDO
+    @Override
+    public String toString() {
+        return getFullNumber();
+    }
+}
