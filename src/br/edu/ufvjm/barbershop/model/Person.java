@@ -1,4 +1,4 @@
-package br.edu.ufvjm.barber.model;
+package br.edu.ufvjm.barbershop.model;
 
 public abstract class Person {
 
@@ -8,6 +8,11 @@ public abstract class Person {
     private Address address;
 
     public Person(Long id, String name, Phone phone, Address address) {
+
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
+
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -24,6 +29,9 @@ public abstract class Person {
     }
 
     public void setName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
         this.name = name;
     }
 

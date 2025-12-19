@@ -1,4 +1,4 @@
-package br.edu.ufvjm.barber.model;
+package br.edu.ufvjm.barbershop.model;
 
 public record Address(String street, String number, String neighborhood, String city, String zipCode) {
 
@@ -16,7 +16,7 @@ public record Address(String street, String number, String neighborhood, String 
         zipCode = zipCode.replaceAll("\\D", "");
 
         if (zipCode.length() != 8) {
-            throw new IllegalArgumentException("Invalid ZIP code.");
+            throw new IllegalArgumentException("ZIP code must contain exactly 8 digits.");
         }
     }
 

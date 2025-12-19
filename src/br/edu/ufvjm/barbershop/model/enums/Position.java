@@ -1,4 +1,4 @@
-package br.edu.ufvjm.barber.model.enums;
+package br.edu.ufvjm.barbershop.model.enums;
 
 public enum Position {
     BARBER,

@@ -1,6 +1,6 @@
-package br.edu.ufvjm.barber.model;
+package br.edu.ufvjm.barbershop.model;
 
-import br.edu.ufvjm.barber.model.enums.Position;
+import br.edu.ufvjm.barbershop.model.enums.Position;
 import java.math.BigDecimal;
 import java.util.Objects;
 

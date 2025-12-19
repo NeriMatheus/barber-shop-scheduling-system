@@ -1,4 +1,4 @@
-package br.edu.ufvjm.barber.model;
+package br.edu.ufvjm.barbershop.model;
 
 /**
  * @param ddi    +55
@@ -12,7 +12,7 @@ public record Phone(String ddi, String ddd, String number) {
         if (ddi == null || ddi.isBlank() ||
                 ddd == null || ddd.isBlank() ||
                 number == null || number.isBlank()) {
-            throw new IllegalArgumentException("No field can be null.");
+            throw new IllegalArgumentException("DDI, DDD and number must be informed.");
         }
     }
 
