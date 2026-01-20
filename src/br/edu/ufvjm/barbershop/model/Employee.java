@@ -1,20 +1,20 @@
 package br.edu.ufvjm.barbershop.model;
 
-import br.edu.ufvjm.barbershop.model.enums.Position;
+import br.edu.ufvjm.barbershop.model.enums.EmployeePosition;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Employee extends Person {
 
-    private Position position;
+    private EmployeePosition employeePosition;
     private final String login;
     private String password;
     private BigDecimal salary;
 
-    public Employee(Long id, String name, Phone phone, Address address, Position position, String login, String password, BigDecimal salary) {
+    public Employee(Long id, String name, Phone phone, Address address, EmployeePosition employeePosition, String login, String password, BigDecimal salary) {
         super(id, name, phone, address);
 
-        if (position == null)
+        if (employeePosition == null)
             throw new IllegalArgumentException("Position cannot be null.");
 
         if (login == null || login.isBlank())
@@ -26,19 +26,19 @@ public class Employee extends Person {
         if (salary == null || salary.signum() < 0)
             throw new IllegalArgumentException("Salary cannot be negative.");
 
-        this.position = position;
+        this.employeePosition = employeePosition;
         this.login = login;
         this.password = password;
         this.salary = salary;
     }
 
     // GETTERS E SETTERS
-    public Position getPosition() {
-        return position;
+    public EmployeePosition getEmployeePosition() {
+        return employeePosition;
     }
 
-    public void setPosition(Position position) {
-        this.position = Objects.requireNonNull(position);
+    public void setPosition(EmployeePosition employeePosition) {
+        this.employeePosition = Objects.requireNonNull(employeePosition);
     }
 
     public String getLogin() {
@@ -71,6 +71,14 @@ public class Employee extends Person {
     // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
-        return getId() + ": " + getName() + "/" + getPosition();
+        return getClass().getSimpleName()
+                + "{id="
+                + getId()
+                + ", name='"
+                + getName()
+                + '\''
+                + ", position="
+                + getEmployeePosition()
+                + '}';
     }
 }

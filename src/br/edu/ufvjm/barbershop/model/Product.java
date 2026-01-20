@@ -79,7 +79,19 @@ public class Product {
     // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
-        return id + ": " + name + " / " + type +
-                " / " + price + " / qty=" + quantity;
+        return getClass().getSimpleName()
+                + "{d="
+                + id
+                + ", name='"
+                + name
+                + '\''
+                + ", type='"
+                + type
+                + '\''
+                + ", price="
+                + price
+                + ", quantity="
+                + quantity
+                + '}';
     }
 }

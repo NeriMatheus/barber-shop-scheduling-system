@@ -54,6 +54,16 @@ public abstract class Person {
     // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
-        return getId() + ": " + getName();
+        return getClass().getSimpleName()
+                + "{id="
+                + id
+                + ", name='"
+                + name
+                + '\''
+                + ", phone="
+                + phone
+                + ", address="
+                + address
+                + '}';
     }
 }
