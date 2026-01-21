@@ -1,6 +1,6 @@
 package br.edu.ufvjm.barbershop.model.enums;
 
-public enum SchedulingStatus {
+public enum AppointmentStatus {
     PENDENTE,
     PRE_AGENDADO,
     CONFIRMADO,
