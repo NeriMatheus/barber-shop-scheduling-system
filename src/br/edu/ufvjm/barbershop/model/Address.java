@@ -27,7 +27,7 @@ public record Address(String street, String number, String neighborhood, String 
 
     // ENDEREÇO PREENCHIDO
     public String getFullAddress() {
-        return street + ", " +
+        return street() + ", " +
                 number + " - " +
                 neighborhood + " - " +
                 city + " - ZIP: " +

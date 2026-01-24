@@ -81,10 +81,15 @@ public class Expense {
     @Override
     public String toString() {
         return getClass().getSimpleName() +
-                "{id=" + id +
-                ", description='" + description + '\'' +
-                ", value=" + value +
-                ", date=" + date +
-                '}';
+                "{id="
+                + getId()
+                + ", description='"
+                + getDescription()
+                + '\''
+                + ", value="
+                + getValue()
+                + ", date="
+                + getDate()
+                + '}';
     }
 }

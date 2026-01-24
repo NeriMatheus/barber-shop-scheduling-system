@@ -25,7 +25,8 @@ public class Administrator extends Employee {
     @Override
     public String toString() {
         return getClass().getSimpleName()
-                + "id=" + getId()
+                + "id="
+                + getId()
                 + ", name='"
                 + getName()
                 + '\''

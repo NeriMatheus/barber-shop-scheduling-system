@@ -2,10 +2,12 @@ package br.edu.ufvjm.barbershop.model;
 
 public abstract class Person {
 
-    private final Long id;
-    private String name;
-    private Phone phone;
-    private Address address;
+    protected  Long id;
+    protected String name;
+    protected Phone phone;
+    protected Address address;
+
+    public Person() {}
 
     public Person(Long id, String name, Phone phone, Address address) {
 
@@ -56,14 +58,14 @@ public abstract class Person {
     public String toString() {
         return getClass().getSimpleName()
                 + "{id="
-                + id
+                + getId()
                 + ", name='"
-                + name
+                + getName()
                 + '\''
                 + ", phone="
-                + phone
+                + getPhone()
                 + ", address="
-                + address
+                + getAddress()
                 + '}';
     }
 }

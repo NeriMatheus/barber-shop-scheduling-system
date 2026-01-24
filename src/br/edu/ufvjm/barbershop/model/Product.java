@@ -81,17 +81,17 @@ public class Product {
     public String toString() {
         return getClass().getSimpleName()
                 + "{d="
-                + id
+                + getId()
                 + ", name='"
-                + name
+                + getName()
                 + '\''
                 + ", type='"
-                + type
+                + getType()
                 + '\''
                 + ", price="
-                + price
+                + getPrice()
                 + ", quantity="
-                + quantity
+                + getQuantity()
                 + '}';
     }
 }
