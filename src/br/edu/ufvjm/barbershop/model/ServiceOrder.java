@@ -30,48 +30,48 @@ public class ServiceOrder {
         this.executedAt = LocalDateTime.now();
     }
 
-        //GETTERS
-        public Long getId() {
-            return id;
+    // GETTERS
+    public Long getId() {
+        return id;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public ServiceOrderStatus getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getExecutedAt() {
+        return executedAt;
+    }
+
+    // REGRAS DE NEGÓCIO
+    public void pay() {
+        if (status != ServiceOrderStatus.OPEN) {
+            throw new IllegalStateException("Only open service orders can be paid.");
         }
+        this.status = ServiceOrderStatus.PAID;
+    }
 
-        public Appointment getAppointment() {
-            return appointment;
+    public void cancel() {
+        if (status == ServiceOrderStatus.PAID) {
+            throw new IllegalStateException("Paid service orders cannot be canceled.");
         }
-
-        public BigDecimal getTotalAmount() {
-            return totalAmount;
-        }
-
-        public PaymentMethod getPaymentMethod() {
-            return paymentMethod;
-        }
-
-        public ServiceOrderStatus getStatus() {
-            return status;
-        }
-
-        public LocalDateTime getExecutedAt() {
-            return executedAt;
-        }
-
-        //REGRAS DE NEGÓCIO
-        public void pay() {
-            if (status != ServiceOrderStatus.OPEN) {
-                throw new IllegalStateException("Only open service orders can be paid.");
-            }
-            this.status = ServiceOrderStatus.PAID;
-        }
-
-        public void cancel() {
-            if (status == ServiceOrderStatus.PAID) {
-                throw new IllegalStateException("Paid service orders cannot be canceled.");
-            }
-            this.status = ServiceOrderStatus.CANCELED;
-        }
+        this.status = ServiceOrderStatus.CANCELED;
+    }
 
 
-    //HASHCODE
+    // HASHCODE
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,7 +85,7 @@ public class ServiceOrder {
         return Objects.hash(id);
     }
 
-    //SAÍDA DOS DADOS PREENCHIDOS
+    // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
         return getClass().getSimpleName()

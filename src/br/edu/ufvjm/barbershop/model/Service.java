@@ -10,7 +10,7 @@ public class Service {
         this.value = value;
     }
 
-    //GETTERS E SETTERS
+    // GETTERS E SETTERS
     public String getType() {
         return type;
     }
@@ -27,7 +27,7 @@ public class Service {
         this.value = value;
     }
 
-    //SAÍDA DOS DADOS PREENCHIDOS
+    // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
         return getClass().getSimpleName()

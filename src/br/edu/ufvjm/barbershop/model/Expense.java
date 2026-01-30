@@ -63,7 +63,7 @@ public class Expense {
         this.date = date;
     }
 
-    // EQUALS E HASHCODE
+    // HASHCODE
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,7 +77,7 @@ public class Expense {
         return Objects.hash(id);
     }
 
-    // SAÍDA DOS DADOS
+    // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
         return getClass().getSimpleName() +

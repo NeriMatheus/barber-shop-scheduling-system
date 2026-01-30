@@ -16,7 +16,7 @@ public class Client extends Person {
         this.cpf = cpf;
     }
 
-    //REGRAS DE NEGÓCIO
+    // REGRAS DE NEGÓCIO
     public void addOrder(ServiceOrder order) {
         if (order == null) {
             throw new IllegalArgumentException("Service order cannot be null.");
@@ -24,7 +24,7 @@ public class Client extends Person {
         orders.add(order);
     }
 
-    //GETTERS E SETTERS
+    // GETTERS E SETTERS
     public String getEmail() {
         return cpf;
     }
@@ -41,7 +41,7 @@ public class Client extends Person {
         this.email = email;
     }
 
-    //HASHCODE
+    // HASHCODE
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,7 +55,7 @@ public class Client extends Person {
         return Objects.hash(id);
     }
 
-    //SAÍDA DOS DADOS PREENCHIDOS
+    // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
         return getClass().getSimpleName()

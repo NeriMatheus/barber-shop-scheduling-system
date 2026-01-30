@@ -17,7 +17,7 @@ public class Appointment {
     private String description;
     private AppointmentStatus status;
 
-    //CONSTRUTOR PRIVADO (BUILDER)
+    // CONSTRUTOR PRIVADO (BUILDER)
     private Appointment(Builder builder) {
         this.client = builder.client;
         this.employee = builder.employee;
@@ -28,7 +28,7 @@ public class Appointment {
         this.status = builder.status != null ? builder.status : AppointmentStatus.PRE_AGENDADO;
     }
 
-    //PADRÃO DE PROJETO BUILDER
+    // PADRÃO DE PROJETO BUILDER
     public static class Builder {
 
         private Client client;
@@ -79,7 +79,7 @@ public class Appointment {
         }
     }
 
-    //REGRAS DE NEGÓCIO
+    // REGRAS DE NEGÓCIO
     public void confirm() {
         validateChange();
         this.status = AppointmentStatus.CONFIRMADO;
@@ -103,7 +103,7 @@ public class Appointment {
         }
     }
 
-    //GETTERS E SETTERS
+    // GETTERS E SETTERS
     public Long getId() {
         return id;
     }
@@ -148,7 +148,7 @@ public class Appointment {
         return status;
     }
 
-    //HASHCODE
+    // HASHCODE
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -162,7 +162,7 @@ public class Appointment {
         return Objects.hash(id);
     }
 
-    //SAÍDA DOS DADOS PREENCHIDOS
+    // SAÍDA DOS DADOS PREENCHIDOS
     @Override
     public String toString() {
         return getClass().getSimpleName()
