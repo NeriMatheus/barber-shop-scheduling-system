@@ -53,7 +53,7 @@ public abstract class Person {
         this.address = address;
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()

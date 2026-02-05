@@ -74,7 +74,7 @@ public class SalesReport {
                 .divide(BigDecimal.valueOf(count), 2, BigDecimal.ROUND_HALF_UP);
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()

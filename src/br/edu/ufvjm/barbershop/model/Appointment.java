@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Appointment {
 
     private Long id;
-    private Client client;
+    private Customer customer;
     private Employee employee;
     private Service service;
     private LocalDateTime dateTime;
@@ -17,21 +17,25 @@ public class Appointment {
     private String description;
     private AppointmentStatus status;
 
+    protected Appointment() {}
+
     // CONSTRUTOR PRIVADO (BUILDER)
     private Appointment(Builder builder) {
-        this.client = builder.client;
+        this.customer = builder.customer;
         this.employee = builder.employee;
         this.service = builder.service;
         this.dateTime = builder.dateTime;
         this.amount = builder.amount;
         this.description = builder.description;
-        this.status = builder.status != null ? builder.status : AppointmentStatus.PRE_AGENDADO;
+        this.status = builder.status != null
+                ? builder.status
+                : AppointmentStatus.PRE_AGENDADO;
     }
 
-    // PADRÃO DE PROJETO BUILDER
+    // BUILDER
     public static class Builder {
 
-        private Client client;
+        private Customer customer;
         private Employee employee;
         private Service service;
         private LocalDateTime dateTime;
@@ -39,8 +43,8 @@ public class Appointment {
         private String description;
         private AppointmentStatus status;
 
-        public Builder client(Client client) {
-            this.client = client;
+        public Builder customer(Customer customer) {
+            this.customer = customer;
             return this;
         }
 
@@ -75,6 +79,15 @@ public class Appointment {
         }
 
         public Appointment build() {
+            if (customer == null)
+                throw new IllegalStateException("Customer is required.");
+            if (employee == null)
+                throw new IllegalStateException("Employee is required.");
+            if (service == null)
+                throw new IllegalStateException("Service is required.");
+            if (dateTime == null)
+                throw new IllegalStateException("Date and time are required.");
+
             return new Appointment(this);
         }
     }
@@ -87,7 +100,7 @@ public class Appointment {
 
     public void complete() {
         if (status != AppointmentStatus.CONFIRMADO) {
-            throw new IllegalArgumentException("Only confirmed appointments can be completed.");
+            throw new IllegalStateException("Only confirmed appointments can be completed.");
         }
         this.status = AppointmentStatus.CONCLUIDO;
     }
@@ -98,8 +111,9 @@ public class Appointment {
     }
 
     private void validateChange() {
-        if (status == AppointmentStatus.CANCELADO || status == AppointmentStatus.CONCLUIDO) {
-            throw new IllegalStateException("Appointment can no longe be modified.");
+        if (status == AppointmentStatus.CANCELADO
+                || status == AppointmentStatus.CONCLUIDO) {
+            throw new IllegalStateException("Appointment can no longer be modified.");
         }
     }
 
@@ -108,8 +122,8 @@ public class Appointment {
         return id;
     }
 
-    public Client getClient() {
-        return client;
+    public Customer getCustomer() {
+        return customer;
     }
 
     public Employee getEmployee() {
@@ -128,7 +142,7 @@ public class Appointment {
         this.service = service;
     }
 
-    public LocalDateTime getDateTime(LocalDateTime dateTime) {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
@@ -162,15 +176,14 @@ public class Appointment {
         return Objects.hash(id);
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()
-                + '{'
-                + "id="
+                + "{id="
                 + getId()
-                + ", client='"
-                + (getClient() != null ? getClient().getName() : "N/A")
+                + ", customer='"
+                + (getCustomer() != null ? getCustomer().getName() : "N/A")
                 + '\''
                 + ", employee='"
                 + (getEmployee() != null ? getEmployee().getName() : "N/A")
@@ -179,7 +192,7 @@ public class Appointment {
                 + (getService() != null ? getService().getType() : "N/A")
                 + '\''
                 + ", dateTime="
-                + dateTime
+                + getDateTime()
                 + ", amount="
                 + getAmount()
                 + ", status="

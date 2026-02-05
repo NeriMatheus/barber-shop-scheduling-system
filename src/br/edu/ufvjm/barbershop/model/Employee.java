@@ -68,7 +68,7 @@ public class Employee extends Person {
         this.password = newPassword;
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()

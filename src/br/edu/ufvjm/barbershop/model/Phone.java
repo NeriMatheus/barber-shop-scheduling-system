@@ -21,7 +21,7 @@ public record Phone(String ddi, String ddd, String number) {
         return "+" + ddi() + "(" + ddd() + ") " + number();
     }
 
-    // SAÍDA DO CAMPO TELEFONE PREENCHIDO
+    // OUTPUT
     @Override
     public String toString() {
         return getFullNumber();

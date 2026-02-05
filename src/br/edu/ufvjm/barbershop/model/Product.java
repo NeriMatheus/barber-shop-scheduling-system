@@ -76,7 +76,7 @@ public class Product {
         this.quantity += delta;
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()

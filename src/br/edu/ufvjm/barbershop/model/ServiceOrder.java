@@ -1,6 +1,5 @@
 package br.edu.ufvjm.barbershop.model;
 
-import br.edu.ufvjm.barbershop.model.Appointment;
 import br.edu.ufvjm.barbershop.model.enums.PaymentMethod;
 import br.edu.ufvjm.barbershop.model.enums.ServiceOrderStatus;
 
@@ -16,6 +15,8 @@ public class ServiceOrder {
     private PaymentMethod paymentMethod;
     private ServiceOrderStatus status;
     private LocalDateTime executedAt;
+
+    protected ServiceOrder(){}
 
     public ServiceOrder(Appointment appointment, BigDecimal totalAmount, PaymentMethod paymentMethod) {
 
@@ -85,7 +86,7 @@ public class ServiceOrder {
         return Objects.hash(id);
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()

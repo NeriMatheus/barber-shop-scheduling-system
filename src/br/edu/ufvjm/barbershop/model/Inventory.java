@@ -62,7 +62,7 @@ public class Inventory {
         return products.size();
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()

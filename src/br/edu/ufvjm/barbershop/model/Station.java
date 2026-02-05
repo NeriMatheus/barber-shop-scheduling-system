@@ -69,7 +69,7 @@ public class Station {
         return Objects.hash(number);
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName()

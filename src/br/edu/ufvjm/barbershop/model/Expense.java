@@ -77,7 +77,7 @@ public class Expense {
         return Objects.hash(id);
     }
 
-    // SAÍDA DOS DADOS PREENCHIDOS
+    // OUTPUT
     @Override
     public String toString() {
         return getClass().getSimpleName() +
