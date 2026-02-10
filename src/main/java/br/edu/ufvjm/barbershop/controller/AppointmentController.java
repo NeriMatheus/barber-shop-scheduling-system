@@ -14,7 +14,7 @@ public class AppointmentController {
         this.system = system;
     }
 
-    public Appointment createPreliminary(
+    public Appointment createPreliminaryAppointment(
             String clientId,
             String description,
             LocalDateTime dateTime
@@ -26,7 +26,7 @@ public class AppointmentController {
         return system.findAppointmentById(id);
     }
 
-    public List<Appointment> listAll() {
+    public List<Appointment> listAllAppointments() {
         return system.listAppointments();
     }
 
@@ -44,15 +44,15 @@ public class AppointmentController {
         );
     }
 
-    public void confirm(String id) {
+    public void confirmAppointment(String id) {
         system.confirmAppointment(id);
     }
 
-    public void cancel(String id) {
+    public void cancelAppointment(String id) {
         system.cancelAppointment(id);
     }
 
-    public void conclude(String id) {
+    public void concludeAppointment(String id) {
         system.concludeService(id);
     }
 }
