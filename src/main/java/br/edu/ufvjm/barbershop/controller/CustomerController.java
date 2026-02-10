@@ -1,7 +1,7 @@
 package br.edu.ufvjm.barbearia.controller;
 
 import br.edu.ufvjm.barbershop.model.Customer;
-import br.edu.ufvjm.barbershop.service.SystemService;
+import br.edu.ufvjm.barbershop.service.BarbershopSystem;
 
 import java.util.List;
 
