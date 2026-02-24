@@ -1,62 +1,29 @@
 package br.edu.ufvjm.barbershop.controller;
 
 import br.edu.ufvjm.barbershop.model.Product;
-import br.edu.ufvjm.barbershop.service.BarbershopSystem;
-
-import java.util.List;
 
 public class ProductController {
 
-    private final SystemService system;
-
-    public ProductController(SystemService system) {
-        this.system = system;
+    public ProductController() {
     }
 
-    public void create(Product product) {
-        if (product == null) {
-            return;
-        }
+    public void restock(Product product, int quantity) {
+        if (product == null)
+            throw new IllegalArgumentException("Product cannot be null.");
 
-        system.registerProduct(
-                product.getId(),
-                product.getName(),
-                product.getType(),
-                product.getPrice(),
-                product.getQuantity()
-        );
+        if (quantity <= 0)
+            throw new IllegalArgumentException("Quantity must be positive.");
+
+        product.addQuantity(quantity);
     }
 
-    public Product findById(String id) {
-        if (id == null) {
-            return null;
-        }
+    public void sell(Product product, int quantity) {
+        if (product == null)
+            throw new IllegalArgumentException("Product cannot be null.");
 
-        for (Product product : system.getProducts()) {
-            if (product.getId().equals(id)) {
-                return product;
-            }
-        }
-        return null;
-    }
+        if (quantity <= 0)
+            throw new IllegalArgumentException("Quantity must be positive.");
 
-    public List<Product> listAll() {
-        return system.getProducts();
-    }
-
-    public boolean sell(String id, int quantity) {
-        if (id == null || quantity <= 0) {
-            return false;
-        }
-
-        return system.sellProduct(id, quantity);
-    }
-
-    public void restock(String id, int quantity) {
-        if (id == null || quantity <= 0) {
-            return;
-        }
-
-        system.receiveFromSupplier(id, quantity);
+        product.addQuantity(-quantity);
     }
 }

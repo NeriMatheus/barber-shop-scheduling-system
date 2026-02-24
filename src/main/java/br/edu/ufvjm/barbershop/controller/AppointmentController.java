@@ -3,56 +3,51 @@ package br.edu.ufvjm.barbershop.controller;
 import br.edu.ufvjm.barbershop.model.Appointment;
 import br.edu.ufvjm.barbershop.service.BarbershopSystem;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 public class AppointmentController {
 
     private final BarbershopSystem system;
 
     public AppointmentController(BarbershopSystem system) {
+        if (system == null) {
+            throw new IllegalArgumentException("BarbershopSystem is required.");
+        }
         this.system = system;
     }
 
-    public Appointment createPreliminaryAppointment(
-            String clientId,
-            String description,
-            LocalDateTime dateTime
-    ) {
-        return system.createPreliminaryAppointment(clientId, description, dateTime);
+    // FILA SECUNDÁRIA
+
+    public void addToSecondaryQueue(Appointment appointment) {
+        system.addToSecondaryQueue(appointment);
     }
 
-    public Appointment findById(String id) {
-        return system.findAppointmentById(id);
+    public Appointment callNextFromSecondaryQueue() {
+        return system.pollSecondaryQueue();
     }
 
-    public List<Appointment> listAllAppointments() {
-        return system.listAppointments();
+    public boolean hasPendingSecondaryAppointments() {
+        return system.hasPendingSecondaryAppointments();
     }
 
-    public void assignToBarber(
-            String appointmentId,
-            String barberId,
-            String serviceType,
-            double price
-    ) {
-        system.assignAppointmentToBarber(
-                appointmentId,
-                barberId,
-                serviceType,
-                price
-        );
+    // STATUS DO AGENDAMENTO
+
+    public void confirmAppointment(Appointment appointment) {
+        if (appointment == null) {
+            throw new IllegalArgumentException("Appointment cannot be null.");
+        }
+        appointment.confirm();
     }
 
-    public void confirmAppointment(String id) {
-        system.confirmAppointment(id);
+    public void cancelAppointment(Appointment appointment) {
+        if (appointment == null) {
+            throw new IllegalArgumentException("Appointment cannot be null.");
+        }
+        appointment.cancel();
     }
 
-    public void cancelAppointment(String id) {
-        system.cancelAppointment(id);
-    }
-
-    public void concludeAppointment(String id) {
-        system.concludeService(id);
+    public void concludeAppointment(Appointment appointment) {
+        if (appointment == null) {
+            throw new IllegalArgumentException("Appointment cannot be null.");
+        }
+        appointment.complete();
     }
 }
