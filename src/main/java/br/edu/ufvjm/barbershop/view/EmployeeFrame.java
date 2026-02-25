@@ -1,6 +1,6 @@
 package br.edu.ufvjm.barbershop.view;
 
-import br.edu.ufvjm.barbershop.controller.EmployeeManagementController;
+import br.edu.ufvjm.barbershop.controller.EmployeeController;
 import br.edu.ufvjm.barbershop.model.Employee;
 import br.edu.ufvjm.barbershop.model.enums.EmployeePosition;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EmployeeFrame extends JFrame {
 
-    private final EmployeeManagementController controller;
+    private final EmployeeController controller;
 
     private JTextField txtId;
     private JTextField txtName;
@@ -24,7 +24,7 @@ public class EmployeeFrame extends JFrame {
     private JTable table;
     private DefaultTableModel model;
 
-    public EmployeeFrame(EmployeeManagementController controller) {
+    public EmployeeFrame(EmployeeController controller) {
         this.controller = controller;
         initComponents();
     }
@@ -38,7 +38,7 @@ public class EmployeeFrame extends JFrame {
         JPanel root = new JPanel(new BorderLayout(10, 10));
         root.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // ========= FORM =========
+        // FORMULÁRIO
         JPanel form = new JPanel(new GridBagLayout());
         form.setBorder(BorderFactory.createTitledBorder("Employee Data"));
 
@@ -73,7 +73,7 @@ public class EmployeeFrame extends JFrame {
         gbc.gridx = 0; gbc.gridy = row; form.add(new JLabel("Salary:"), gbc);
         gbc.gridx = 1; form.add(txtSalary, gbc);
 
-        // ========= BUTTONS =========
+        // BOTÕES
         JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 5));
         JButton btnNew = new JButton("New / Clear");
         JButton btnSave = new JButton("Save");
@@ -91,9 +91,10 @@ public class EmployeeFrame extends JFrame {
         left.add(form, BorderLayout.CENTER);
         left.add(buttons, BorderLayout.SOUTH);
 
-        // ========= TABLE =========
+        // TABELA
         model = new DefaultTableModel(
-                new Object[]{"ID", "Name", "Position", "Login", "Salary"}, 0) {
+                new Object[]{"ID", "Name", "Position", "Login", "Salary"}, 0
+        ) {
             @Override
             public boolean isCellEditable(int r, int c) {
                 return false;
@@ -111,7 +112,7 @@ public class EmployeeFrame extends JFrame {
 
         setContentPane(root);
 
-        // ========= ACTIONS =========
+        // AÇÕES
         btnNew.addActionListener(e -> clearFields());
         btnSave.addActionListener(e -> saveEmployee());
         btnSearch.addActionListener(e -> searchEmployee());
@@ -140,14 +141,7 @@ public class EmployeeFrame extends JFrame {
             String password = new String(txtPassword.getPassword());
             BigDecimal salary = new BigDecimal(txtSalary.getText().trim());
 
-            if (name.isEmpty() || login.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Name and login are required.");
-                return;
-            }
-
-            controller.saveEmployee(
-                    id, name, position, login, password, salary
-            );
+            controller.addEmployee(id, name, position, login, password, salary);
 
             JOptionPane.showMessageDialog(this, "Employee saved successfully.");
             loadTable();
@@ -161,7 +155,7 @@ public class EmployeeFrame extends JFrame {
     private void searchEmployee() {
         try {
             Long id = Long.parseLong(txtId.getText().trim());
-            Employee e = controller.findEmployeeById(id);
+            Employee e = controller.findById(id);
 
             if (e == null) {
                 JOptionPane.showMessageDialog(this, "Employee not found.");
@@ -193,7 +187,7 @@ public class EmployeeFrame extends JFrame {
             if (option != JOptionPane.YES_OPTION)
                 return;
 
-            controller.removeEmployee(id);
+            controller.remove(id);
             JOptionPane.showMessageDialog(this, "Employee removed.");
             loadTable();
             clearFields();
@@ -205,7 +199,7 @@ public class EmployeeFrame extends JFrame {
 
     private void loadTable() {
         model.setRowCount(0);
-        List<Employee> employees = controller.getEmployees();
+        List<Employee> employees = controller.findAll();
 
         for (Employee e : employees) {
             model.addRow(new Object[]{
