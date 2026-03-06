@@ -1,8 +1,14 @@
+### Build ###
+target/
+out/
+
 ### IntelliJ IDEA ###
+.idea/
+*.iml
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-.kotlin
+.kotlin/
 
 ### Eclipse ###
 .apt_generated
@@ -26,5 +32,11 @@ bin/
 ### VS Code ###
 .vscode/
 
+### Logs ###
+*.log
+
 ### Mac OS ###
 .DS_Store
+
+### Windows ###
+Thumbs.db
